@@ -15,7 +15,6 @@ class Pharmacy(models.Model):
     website = models.CharField(max_length=100)
 
 class Clinic(models.Model):
-    doctors = models.ForeignKey(Doctor, on_delete=models.CASCADE)
     name = models.CharField(max_length = 100)
     street_address = models.CharField(max_length = 100)
     city = models.CharField(max_length=50)
@@ -28,7 +27,6 @@ class Clinic(models.Model):
     
 
 class Doctor(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
     clinic = models.ForeignKey(Clinic, on_delete=models.CASCADE)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
@@ -55,6 +53,6 @@ class Patient(models.Model):
     street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
-    zip_code = models.IntegerField(max_length=10)
+    zip_code = models.IntegerField
     appointments = models.DateTimeField
     insurance = models.CharField(max_length=50)
