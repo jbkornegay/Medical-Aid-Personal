@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.base import ModelState
+from django.db.models.fields import CharField
 from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
@@ -64,4 +65,7 @@ class Feedback(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=100)
     message = models.CharField(max_length=500)
-    
+
+class Faq(models.Model)
+    question = models.CharField(max_length=100)
+    answer = models.CharField(max_length=200)
