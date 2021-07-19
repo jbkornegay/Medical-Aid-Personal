@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.base import ModelState
 from django.db.models.fields import CharField
 from django.db.models.fields.related import ForeignKey
+from django.urls import reverse
 
 # Create your models here.
 class Pharmacy(models.Model):
@@ -16,6 +17,9 @@ class Pharmacy(models.Model):
     close_time = models.TimeField()
     website = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Clinic(models.Model):
     name = models.CharField(max_length = 100)
     street_address = models.CharField(max_length = 100)
@@ -26,6 +30,9 @@ class Clinic(models.Model):
     days_open = models.CharField(max_length=100)
     open_time = models.TimeField()
     close_time = models.TimeField()
+
+    def __str__(self):
+        return self.name
     
 
 class Doctor(models.Model):
@@ -40,6 +47,9 @@ class Doctor(models.Model):
     zip_code = models.IntegerField()
     phone_number = models.IntegerField()
     specialty = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.first_name
 
 class Patient(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
@@ -59,6 +69,9 @@ class Patient(models.Model):
     appointments = models.DateTimeField
     insurance = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.first_name
+
 class Feedback(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -66,6 +79,30 @@ class Feedback(models.Model):
     subject = models.CharField(max_length=100)
     message = models.CharField(max_length=500)
 
-class Faq(models.Model)
+    def __str__(self):
+        return self.first_name
+
+class Comment(models.Model):
+    full_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.full_name
+
+    def get_absolute_url(self):
+        return reverse('homepage')
+
+class Faq(models.Model):
     question = models.CharField(max_length=100)
     answer = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.question
+
+class Post(models.Model):
+    title= models.CharField(max_length=300, unique=True)
+    content= models.TextField()
+
+    def __str__(self):
+        return self.title

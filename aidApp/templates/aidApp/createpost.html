@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Create a Post </title>
+</head>
+
+<body>
+<h1>Create a Post </h1>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form action="" method="POST">
+{% csrf_token %}
+Title: <input type="text" name="title"/><br/>
+Content: <br/>
+<textarea cols="35" rows="8" name="content">
+</textarea><br/>
+<input type="submit" value="Post"/>
+</form>
+</body>
+
+</html>

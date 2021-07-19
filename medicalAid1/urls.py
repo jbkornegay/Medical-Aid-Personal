@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', aid_app_views.index, name = "homepage"),
     path('aid/', include('aidApp.urls')),
-    path('feedback/',aid_app_views.feedbackview, name = "feedback")
+    path('feedback/',aid_app_views.feedbackview, name = "feedback"),
+    path('new-post/', aid_app_views.createpost, name="new-post"),
 
     
 ]
