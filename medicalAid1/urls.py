@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+# from django.conf.urls.static import static
 from django.urls.conf import include
 from aidApp import views as aid_app_views
-# from aidApp import feedback 
+
+
 
 
 urlpatterns = [
@@ -26,7 +29,9 @@ urlpatterns = [
     path('aid/', include('aidApp.urls')),
     path('feedback/',aid_app_views.feedbackview, name = "feedback"),
     path('new-post/', aid_app_views.createpost, name="new-post"),
-
+    path('doctor/', include('doctor.urls')),
+    # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     
 ]
+
 
