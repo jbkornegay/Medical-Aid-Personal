@@ -30,6 +30,7 @@ urlpatterns = [
     path('feedback/',aid_app_views.feedbackview, name = "feedback"),
     path('new-post/', aid_app_views.createpost, name="new-post"),
     path('doctor/', include('doctor.urls')),
+    
     # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     
 ]

@@ -72,15 +72,25 @@ class Patient(models.Model):
     def __str__(self):
         return self.first_name
 
+
 class Feedback(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
-    subject = models.CharField(max_length=100)
-    message = models.CharField(max_length=500)
+    subject = models.CharField(max_length=50)
+    message = models.TextField()
 
     def __str__(self):
         return self.first_name
+
+class Support(models.Model):
+    fullname = models.CharField(max_length=150)
+    email = models.EmailField()
+    complaint = models.CharField(max_length=50)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.fullname
 
 class Comment(models.Model):
     full_name = models.CharField(max_length=200)

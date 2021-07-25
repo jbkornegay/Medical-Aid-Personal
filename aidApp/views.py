@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import FeedbackForm
-from .models import Comment, Post
+from .models import Comment, Post, Support
 from django.views.generic import CreateView
     
 
@@ -42,3 +42,21 @@ def createpost(request):
             return render(request, 'aidApp/createpost.html')
     else:
         return render(request, 'aidApp/createpost.html')
+
+def support_view(request):
+    if request.method == "POST":
+        if request.POST.get('fullname') and request.POST.get('message'):
+            support = Support()
+            support.fullname= request.POST.get('fullname')
+            support.email= request.POST.get('email')
+            support.complaint= request.POST.get('complaint')
+            support.message= request.POST.get('message')
+            support.save()
+            return redirect('support-success')
+    else:
+        return render(request, 'aidApp/patient/patient-support.html')
+
+
+
+def support_success_view(request):
+    return render(request, 'aidApp/patient/patient-support-feedback.html')
