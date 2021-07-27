@@ -7,29 +7,20 @@ from django.urls import reverse
 # Create your models here.
 class Pharmacy(models.Model):
     name = models.CharField(max_length = 100)
-    street_address = models.CharField(max_length = 100)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    zip_code = models.IntegerField()
-    phone_number = models.IntegerField()
-    days_open = models.CharField(max_length=100)
-    open_time = models.TimeField()
-    close_time = models.TimeField()
-    website = models.CharField(max_length=100)
+    address = models.TextField(max_length = 250, default= "1234 Street Name, City, State 01234")
+    phone_number = models.CharField(max_length=20)
+    hours = models.TextField(max_length=100, default= '24 hours')
+    website = models.URLField(max_length=100)
 
     def __str__(self):
         return self.name
 
 class Clinic(models.Model):
     name = models.CharField(max_length = 100)
-    street_address = models.CharField(max_length = 100)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    zip_code = models.IntegerField()
-    phone_number = models.IntegerField()
-    days_open = models.CharField(max_length=100)
-    open_time = models.TimeField()
-    close_time = models.TimeField()
+    address = models.TextField(max_length = 250, default='1234 Street Name, City, State, 01234')
+    phone_number = models.CharField(max_length=20)
+    hours = models.TextField(max_length=100, default='24 hours')
+    website = models.URLField(max_length=100, default='none')
 
     def __str__(self):
         return self.name
@@ -44,8 +35,8 @@ class Doctor(models.Model):
     street_address = models.CharField(max_length = 100)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
-    zip_code = models.IntegerField()
-    phone_number = models.IntegerField()
+    zip_code = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20)
     specialty = models.CharField(max_length=50)
 
     def __str__(self):
@@ -59,14 +50,13 @@ class Patient(models.Model):
     last_name = models.CharField(max_length = 50)
     email = models.EmailField()
     password = models.CharField(max_length=50)
-    phone_number = models.IntegerField()
+    phone_number = models.CharField(max_length=20)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=25)
     street_address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
-    zip_code = models.IntegerField
-    appointments = models.DateTimeField
+    zip_code = models.CharField(max_length=20, default='01234')
     insurance = models.CharField(max_length=50)
 
     def __str__(self):
